@@ -122,12 +122,12 @@ func (b *Bwhatsapp) Connect() error {
 
 	b.Log.Infoln("WhatsApp connection successful")
 
-	b.contacts, err = b.wc.Store.Contacts.GetAllContacts()
+	b.contacts, err = b.wc.Store.Contacts.GetAllContacts(context.Background())
 	if err != nil {
 		return errors.New("failed to get contacts: " + err.Error())
 	}
 
-	b.joinedGroups, err = b.wc.GetJoinedGroups()
+	b.joinedGroups, err = b.wc.GetJoinedGroups(context.Background())
 	if err != nil {
 		return errors.New("failed to get list of joined groups: " + err.Error())
 	}
